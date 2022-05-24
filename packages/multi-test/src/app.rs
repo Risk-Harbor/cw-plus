@@ -46,10 +46,10 @@ pub struct App<
     Staking = FailingStaking,
     Distr = FailingDistribution,
 > {
-    router: Router<Bank, Custom, Wasm, Staking, Distr>,
-    api: Api,
-    storage: Storage,
-    block: BlockInfo,
+    pub router: Router<Bank, Custom, Wasm, Staking, Distr>,
+    pub api: Api,
+    pub storage: Storage,
+    pub block: BlockInfo,
 }
 
 fn no_init<BankT, CustomT, WasmT, StakingT, DistrT>(
@@ -648,6 +648,13 @@ where
                 .wasm
                 .sudo(&*api, contract_addr.into(), write_cache, router, block, msg)
         })
+    }
+
+    /// This is an "admin" function to let us adjust bank accounts
+    pub fn init_bank_balance(&mut self, account: &Addr, amount: Vec<Coin>) -> AnyResult<()> {
+        let Self { router } = self;
+
+        router.bank.init_balance()
     }
 
     /// Runs arbitrary SudoMsg.
