@@ -650,13 +650,6 @@ where
         })
     }
 
-    /// This is an "admin" function to let us adjust bank accounts
-    pub fn init_bank_balance(&mut self, account: &Addr, amount: Vec<Coin>) -> AnyResult<()> {
-        let Self { router } = self;
-
-        router.bank.init_balance()
-    }
-
     /// Runs arbitrary SudoMsg.
     /// This will create a cache before the execution, so no state changes are persisted if this
     /// returns an error, but all are persisted on success.
