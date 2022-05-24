@@ -156,10 +156,6 @@ where
         msg: WasmMsg,
     ) -> AnyResult<AppResponse> {
         self.execute_wasm(api, storage, router, block, sender.clone(), msg.clone())
-            .context(format!(
-                "error executing WasmMsg:\nsender: {}\n{:?}",
-                sender, msg
-            ))
     }
 
     fn sudo(
