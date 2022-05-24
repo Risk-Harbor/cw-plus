@@ -52,7 +52,7 @@ pub struct App<
     pub block: BlockInfo,
 }
 
-fn no_init<BankT, CustomT, WasmT, StakingT, DistrT>(
+pub fn no_init<BankT, CustomT, WasmT, StakingT, DistrT>(
     _: &mut Router<BankT, CustomT, WasmT, StakingT, DistrT>,
     _: &dyn Api,
     _: &mut dyn Storage,
